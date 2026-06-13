@@ -1,0 +1,51 @@
+[
+  {
+    "symbol": "AAPL",
+    "name": "Apple",
+    "currency": "USD",
+    "condition": "below",
+    "price": 270.00
+  },
+  {
+    "symbol": "TSLA",
+    "name": "Tesla",
+    "currency": "USD",
+    "condition": "below",
+    "price": 150.00
+  },
+  {
+    "symbol": "^GSPC",
+    "name": "S&P 500",
+    "currency": "USD",
+    "condition": "below",
+    "price": 7200.00
+  },
+  {
+    "symbol": "ALK-B.CO",
+    "name": "ALK-Abelló",
+    "currency": "DKK",
+    "condition": "below",
+    "price": 250.00
+  },
+  {
+    "symbol": "NOVO-B.CO",
+    "name": "Novo Nordisk",
+    "currency": "DKK",
+    "condition": "below",
+    "price": 270.00
+  },
+  {
+    "symbol": "GMAB.CO",
+    "name": "Genmab",
+    "currency": "DKK",
+    "condition": "below",
+    "price": 1500.00
+  },
+  {
+    "symbol": "MSFT",
+    "name": "Microsoft",
+    "currency": "USD",
+    "condition": "below",
+    "price": 350.00
+  }
+]

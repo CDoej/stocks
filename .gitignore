@@ -1,0 +1,4 @@
+.env
+stocks.db
+fetch.log
+__pycache__/
