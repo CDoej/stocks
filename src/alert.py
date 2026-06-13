@@ -1,6 +1,9 @@
+import logging
 import smtplib
 from email.mime.text import MIMEText
-from config import EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECIPIENT, SMTP_HOST, SMTP_PORT
+from src.config import EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECIPIENT, SMTP_HOST, SMTP_PORT
+
+logger = logging.getLogger(__name__)
 
 
 def send_alert(name: str, symbol: str, currency: str, condition: str, trigger_price: float, actual_price: float):
@@ -22,4 +25,4 @@ def send_alert(name: str, symbol: str, currency: str, condition: str, trigger_pr
         server.login(EMAIL_SENDER, EMAIL_PASSWORD)
         server.sendmail(EMAIL_SENDER, EMAIL_RECIPIENT, msg.as_string())
 
-    print(f"Alert sent: {subject}")
+    logger.info(f"Alert sent: {subject}")

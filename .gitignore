@@ -2,3 +2,4 @@
 stocks.db
 fetch.log
 __pycache__/
+venv/

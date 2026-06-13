@@ -1,5 +1,5 @@
 import sqlite3
-from config import DB_PATH
+from src.config import DB_PATH
 
 
 def get_conn():
@@ -45,7 +45,6 @@ def record_alert(symbol: str, condition: str, trigger_price: float, actual_price
 
 
 def already_alerted_today(symbol: str, condition: str, trigger_price: float) -> bool:
-    """Prevent duplicate alerts for the same condition within the same calendar day."""
     with get_conn() as conn:
         row = conn.execute(
             """
