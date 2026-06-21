@@ -19,10 +19,13 @@ def send_alert(name: str, symbol: str, currency: str, condition: str, trigger_pr
     msg["From"] = EMAIL_SENDER
     msg["To"] = EMAIL_RECIPIENT
 
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-        server.ehlo()
-        server.starttls()
-        server.login(EMAIL_SENDER, EMAIL_PASSWORD)
-        server.sendmail(EMAIL_SENDER, EMAIL_RECIPIENT, msg.as_string())
-
-    logger.info(f"Alert sent: {subject}")
+    try:
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.ehlo()
+            server.starttls()
+            server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+            server.sendmail(EMAIL_SENDER, EMAIL_RECIPIENT, msg.as_string())
+        logger.info(f"Alert sent: {subject}")
+    except Exception as exc:
+        # Log and continue — a failed alert shouldn't abort the rest of the run.
+        logger.error(f"Failed to send alert '{subject}': {exc}")

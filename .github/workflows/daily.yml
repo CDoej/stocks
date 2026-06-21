@@ -1,0 +1,35 @@
+name: Daily stock price fetch
+
+on:
+  schedule:
+    - cron: "30 8 * * 1-5"   # 9:30 AM CET (UTC+1, standard time)
+    - cron: "30 14 * * 1-5"  # 9:30 AM ET  (UTC-5, standard time)
+  workflow_dispatch:          # allows manual trigger from GitHub UI
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run stock fetcher
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_EMAIL: ${{ secrets.SUPABASE_EMAIL }}
+          SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
+          STOCKS_EMAIL_SENDER: ${{ secrets.STOCKS_EMAIL_SENDER }}
+          STOCKS_EMAIL_PASSWORD: ${{ secrets.STOCKS_EMAIL_PASSWORD }}
+          STOCKS_EMAIL_RECIPIENT: ${{ secrets.STOCKS_EMAIL_RECIPIENT }}
+        run: python main.py
