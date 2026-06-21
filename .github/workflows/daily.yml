@@ -1,9 +1,8 @@
-name: Daily stock price fetch
+name: Stock price fetch
 
 on:
   schedule:
-    - cron: "30 8 * * 1-5"   # 9:30 AM CET (UTC+1, standard time)
-    - cron: "30 14 * * 1-5"  # 9:30 AM ET  (UTC-5, standard time)
+    - cron: "0 */2 * * 1-5"  # every 2 hours, Monday–Friday (UTC)
   workflow_dispatch:          # allows manual trigger from GitHub UI
 
 jobs:
